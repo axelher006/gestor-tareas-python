@@ -79,7 +79,6 @@ def completar_tarea(tareas):
 
     :param tareas: Lista de tareas existente.
     """
-    # Creamos una copia ordenada solo para mostrar
     tareas_ordenadas = sorted(tareas, key=lambda x: x.fecha)
     mostrar_tareas(tareas)
 
