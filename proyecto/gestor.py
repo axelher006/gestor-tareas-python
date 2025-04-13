@@ -3,10 +3,22 @@ from tarea import Tarea
 from validar_fecha import *
 
 def guardar_tareas(tareas, archivo="tareas.json"):
+    """
+    Guarda la lista de tareas en un archivo JSON.
+
+    :param tareas: Lista de objetos Tarea.
+    :param archivo: Nombre del archivo donde guardar.
+    """
     with open(archivo, "w") as f:
         json.dump([t.to_dict() for t in tareas], f, indent=4)
 
 def cargar_tareas(archivo="tareas.json"):
+    """
+    Carga tareas desde un archivo JSON si existe.
+
+    :param archivo: Nombre del archivo a cargar.
+    :return: Lista de objetos Tarea.
+    """
     try:
         with open(archivo, "r") as f:
             data = json.load(f)
@@ -15,9 +27,21 @@ def cargar_tareas(archivo="tareas.json"):
         return []
 
 def aplicar_tachado(texto):
+    """
+    Devuelve el texto con cada letra tachada usando un carácter unicode.
+
+    :param texto: Texto a modificar.
+    :return: Texto con tachado.
+    """
     return ''.join(char + '\u0336' for char in texto)
 
 def mostrar_tareas(tareas):
+    """
+    Muestra todas las tareas ordenadas por fecha.
+    Si están completadas, se muestran con tachado.
+
+    :param tareas: Lista de objetos Tarea.
+    """
     if not tareas:
         print("\n------------------\n")
         print("No hay tareas.")
@@ -33,6 +57,11 @@ def mostrar_tareas(tareas):
 
 
 def agregar_tarea(tareas):
+    """
+    Pide al usuario una nueva tarea, valida la fecha y la agrega a la lista.
+
+    :param tareas: Lista de tareas existente.
+    """
     desc = input("Descripción de la tarea: ")
     while True:
         fecha = input("Fecha (YYYY-MM-DD): ")
@@ -45,6 +74,11 @@ def agregar_tarea(tareas):
 
 
 def completar_tarea(tareas):
+    """
+    Permite al usuario marcar una tarea como completada.
+
+    :param tareas: Lista de tareas existente.
+    """
     # Creamos una copia ordenada solo para mostrar
     tareas_ordenadas = sorted(tareas, key=lambda x: x.fecha)
     mostrar_tareas(tareas)
