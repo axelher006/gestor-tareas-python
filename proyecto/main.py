@@ -1,5 +1,9 @@
 from gestor import *
 if __name__ == "__main__":
+    """
+    Ejecuta un menú para que el usuario pueda ver, agregar,
+    completar y guardar tareas usando las funciones definidas en el gestor.
+    """
     tareas = cargar_tareas()
 
     while True:
